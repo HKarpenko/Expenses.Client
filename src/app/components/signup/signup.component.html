@@ -1,0 +1,95 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-4">
+            <div class="card mt-5">
+                <div class="card-header bg-primary bg-opacity-75">
+                    <h3 class="card-title mb-0 text-white">Sign Up</h3>
+                </div>
+
+                <div class="card-body">
+
+                    @if(errorMessage) {
+                        <div class="alert alert-danger">
+                            {{errorMessage}}
+                        </div>
+                    }
+
+                    <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input
+                                type="email"
+                                class="form-control"
+                                [ngClass]="{'is-invalid': hasError('email', 'required') || hasError('email', 'email')}"
+                                id="email"
+                                formControlName="email"
+                            />
+                            @if (hasError('email', 'required')) {
+                                <div class="invalid-feedback">
+                                    Email is required
+                                </div>
+                            }
+                            @if (hasError('email', 'email')) {
+                                <div class="invalid-feedback">
+                                    Please, enter a valid email address
+                                </div>
+                            }
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input
+                                type="password"
+                                class="form-control"
+                                [ngClass]="{'is-invalid': hasError('password', 'required') || hasError('password', 'minlength')}"
+                                id="password"
+                                formControlName="password"
+                            />
+                            @if (hasError('password', 'required')) {
+                                <div class="invalid-feedback">
+                                    Password is required
+                                </div>
+                            }
+                            @if (hasError('password', 'minlength')) {
+                                <div class="invalid-feedback">
+                                    Password must be at least 6 characters length
+                                </div>
+                            }
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="confirmPassword" class="form-label">Confirm Password</label>
+                            <input
+                                type="password"
+                                class="form-control"
+                                [ngClass]="{'is-invalid': hasError('confirmPassword', 'required') || signUpForm.hasError('passwordMismatch')}"
+                                id="confirmPassword"
+                                formControlName="confirmPassword"
+                            />
+                            @if (hasError('confirmPassword', 'required')) {
+                                <div class="invalid-feedback">
+                                    Confirm Password is required
+                                </div>
+                            }
+                            @if (signUpForm.hasError('passwordMismatch') && signUpForm.get('confirmPassword')?.touched) {
+                                <div class="invalid-feedback">
+                                    Passwords do not match
+                                </div>
+                            }
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="sumbit" class="btn btn-primary" [disabled]="!signUpForm.valid">
+                                Sign Up
+                            </button>
+                        </div>
+                        <div class="text-center mt-3">
+                            Already have an account?
+                            <a [routerLink]="'/login'">Login</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

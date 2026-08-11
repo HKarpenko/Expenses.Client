@@ -1,0 +1,74 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-4">
+            <div class="card mt-5">
+                <div class="card-header bg-primary bg-opacity-75">
+                    <h3 class="card-title mb-0 text-white">Login</h3>
+                </div>
+
+                <div class="card-body">
+
+                    @if(errorMessage) {
+                        <div class="alert alert-danger">
+                            {{errorMessage}}
+                        </div>
+                    }
+
+                    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input
+                                type="email"
+                                class="form-control"
+                                [ngClass]="{'is-invalid': hasError('email', 'required') || hasError('email', 'email')}"
+                                id="email"
+                                formControlName="email"
+                            />
+                            @if (hasError('email', 'required')) {
+                                <div class="invalid-feedback">
+                                    Email is required
+                                </div>
+                            }
+                            @if (hasError('email', 'email')) {
+                                <div class="invalid-feedback">
+                                    Please, enter a valid email address
+                                </div>
+                            }
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input
+                                type="password"
+                                class="form-control"
+                                [ngClass]="{'is-invalid': hasError('password', 'required') || hasError('password', 'minlength')}"
+                                id="password"
+                                formControlName="password"
+                            />
+                            @if (hasError('password', 'required')) {
+                                <div class="invalid-feedback">
+                                    Password is required
+                                </div>
+                            }
+                            @if (hasError('password', 'minlength')) {
+                                <div class="invalid-feedback">
+                                    Password must be at least 6 characters length
+                                </div>
+                            }
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="sumbit" class="btn btn-primary" [disabled]="!loginForm.valid">
+                                Login
+                            </button>
+                        </div>
+                        <div class="text-center mt-3">
+                            You do not have an account?
+                            <a [routerLink]="'/signup'">Sign Up</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
