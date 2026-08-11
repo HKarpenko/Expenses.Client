@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class AuthService {
   private readonly http = inject(HttpClient);
   private readonly router = inject(Router);
-  private readonly apiUrl = 'https://localhost:7068/';
+  private readonly apiUrl = 'https://expenseapi-a9e4awd7cwdebwc5.polandcentral-01.azurewebsites.net/';
 
   private currentUserSubject = new BehaviorSubject<string | null>(null);
   currentUser$ = this.currentUserSubject.asObservable();

@@ -9,7 +9,7 @@ import { Transaction } from '../models/transaction';
 export class TransactionService {
   private readonly http = inject(HttpClient);
 
-  private readonly apiUrl = 'https://localhost:7068/';
+  private readonly apiUrl = 'https://expenseapi-a9e4awd7cwdebwc5.polandcentral-01.azurewebsites.net/';
 
   getAll(): Observable<Transaction[]> {
     return this.http.get<Transaction[]>(this.apiUrl+"api/transactions/all");
