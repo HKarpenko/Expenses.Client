@@ -1,0 +1,18 @@
+<div 
+    class="loading-container" 
+    [class.fullscreen]="fullscreen" 
+    [class.overlay]="overlay"
+>
+    <div 
+        class="spinner" 
+        [style.width.px]="size" 
+        [style.height.px]="size"
+        [style.border-top-color]="color"
+        [style.border-width.px]="borderWidth"
+    ></div>
+    @if(message) {
+        <p class="loading-message" [style.color]="textColor">
+            {{ message }}
+        </p>
+    }
+</div>
