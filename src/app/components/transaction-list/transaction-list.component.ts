@@ -45,7 +45,8 @@ export class TransactionListComponent implements OnInit {
 
     // Example subscription
     stringStream$.subscribe({
-      next: (str) => this.message = str
+      next: (str) => this.message = str,
+      complete: () => localStorage.setItem("message", "shown")
     });
   }
 
@@ -76,5 +77,10 @@ export class TransactionListComponent implements OnInit {
         });
       }
     }
+  }
+
+  shouldShowLoading(): boolean {
+    const messageShown = localStorage.getItem("message");
+    return messageShown !== "shown";
   }
 }

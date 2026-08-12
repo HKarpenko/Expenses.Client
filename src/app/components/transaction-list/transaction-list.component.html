@@ -82,7 +82,7 @@
     </div>
 </div>
 
-@if (message != '') {
+@if (message != '' && shouldShowLoading()) {
     <app-loading [message]="message" [fullscreen]="true">
     </app-loading>
 }
